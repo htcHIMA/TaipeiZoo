@@ -108,14 +108,13 @@ class AnimalAreaDetailFragment : Fragment() {
     }
 
     private fun initData() {
-        if (arguments != null && arguments!!.containsKey(GeneralConstants.ANIMAL_AREA_INFO)) {
-            viewModel.animalAreaInfo = arguments!!.getParcelable(GeneralConstants.ANIMAL_AREA_INFO)!!
+        viewModel.animalAreaInfo = (activity as MainPageActivity).animalAreaSelected
 
-            binding.ivAnimalArea.setImageBitmap(viewModel.animalAreaInfo.image)
-            binding.tvTitle.text = viewModel.animalAreaInfo.e_Name
-            binding.tvSubtitle.text = viewModel.animalAreaInfo.e_Category
-            binding.tvSupporting.text = viewModel.animalAreaInfo.e_Info
-        }
+        binding.ivAnimalArea.setImageBitmap(viewModel.animalAreaInfo.image)
+        binding.tvTitle.text = viewModel.animalAreaInfo.e_Name
+        binding.tvSubtitle.text = viewModel.animalAreaInfo.e_Category
+        binding.tvSupporting.text = viewModel.animalAreaInfo.e_Info
+
     }
 
     private fun setupViewModel(binding: FragAnimalAreaDetailBinding) {
@@ -158,11 +157,8 @@ class AnimalAreaDetailFragment : Fragment() {
     private val clickedCardViewObserver = Observer<PlantInfo> {
         if (it != null) {
             Log.e("onClicked", "open card : " + it.F_Name_Ch)
-            val bundle = Bundle()
-            bundle.putParcelable(GeneralConstants.PLANT_INFO, it)
-            val plantDetailFragment = PlantDetailFragment()
-            plantDetailFragment.arguments = bundle
-            (activity as BaseActivity).navigateTo(plantDetailFragment, true)
+            (activity as MainPageActivity).plantInfoSelected = it
+            (activity as BaseActivity).navigateTo(PlantDetailFragment(), true)
         }
         viewModel.clickedCardView.postValue(null)
     }

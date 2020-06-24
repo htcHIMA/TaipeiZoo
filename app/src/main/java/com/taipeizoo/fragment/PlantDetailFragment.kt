@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.taipeizoo.R
 import com.taipeizoo.activity.MainPageActivity
-import com.taipeizoo.constnats.GeneralConstants
 import com.taipeizoo.databinding.FragPlantDetailBinding
 import com.taipeizoo.remote.dto.response.BasePlantResponse
 import com.taipeizoo.viewmodel.PlantDetailViewModel
@@ -40,9 +39,7 @@ class PlantDetailFragment : Fragment() {
     }
 
     private fun initData() {
-        if (arguments != null && arguments!!.containsKey(GeneralConstants.PLANT_INFO)) {
-            viewModel.plantInfo = arguments!!.getParcelable(GeneralConstants.PLANT_INFO)!!
-        }
+        viewModel.plantInfo = (activity as MainPageActivity).plantInfoSelected
     }
 
 

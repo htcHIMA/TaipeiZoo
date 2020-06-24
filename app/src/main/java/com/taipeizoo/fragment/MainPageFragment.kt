@@ -85,11 +85,8 @@ class MainPageFragment : Fragment() {
     private val clickedCardViewObserver = Observer<AnimalAreaInfo> {
         if (it != null) {
             Log.e("onClicked", "open card : " + it.e_Name)
-            val bundle = Bundle()
-            bundle.putParcelable(GeneralConstants.ANIMAL_AREA_INFO, it)
-            val animalAreaDetailFragment = AnimalAreaDetailFragment()
-            animalAreaDetailFragment.arguments = bundle
-            (activity as BaseActivity).navigateTo(animalAreaDetailFragment, true)
+            (activity as MainPageActivity).animalAreaSelected = it
+            (activity as BaseActivity).navigateTo(AnimalAreaDetailFragment(), true)
         }
         viewModel.clickedCardView.postValue(null)
     }

@@ -8,10 +8,15 @@ import com.taipeizoo.R
 import com.taipeizoo.databinding.ActivityMainBinding
 import com.taipeizoo.fragment.AnimalAreaDetailFragment
 import com.taipeizoo.fragment.MainPageFragment
+import com.taipeizoo.remote.dto.response.AnimalAreaInfo
+import com.taipeizoo.remote.dto.response.PlantInfo
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainPageActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
+    lateinit var animalAreaSelected: AnimalAreaInfo
+    lateinit var plantInfoSelected: PlantInfo
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
