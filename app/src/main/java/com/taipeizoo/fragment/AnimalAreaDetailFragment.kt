@@ -1,5 +1,7 @@
 package com.taipeizoo.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,7 +22,6 @@ import com.taipeizoo.activity.MainPageActivity
 import com.taipeizoo.adapter.PlantInfoAdapter
 import com.taipeizoo.constnats.GeneralConstants
 import com.taipeizoo.databinding.FragAnimalAreaDetailBinding
-import com.taipeizoo.remote.dto.response.AnimalAreaInfo
 import com.taipeizoo.remote.dto.response.BasePlantResponse
 import com.taipeizoo.remote.dto.response.PlantInfo
 import com.taipeizoo.viewmodel.AnimalAreaDetailViewModel
@@ -29,7 +30,6 @@ import com.taipeizoo.viewmodel.AnimalAreaDetailViewModel
 class AnimalAreaDetailFragment : Fragment() {
     private lateinit var viewModel: AnimalAreaDetailViewModel
     private lateinit var plantInfoAdapter: PlantInfoAdapter
-    private lateinit var animalAreaInfo: AnimalAreaInfo
     private lateinit var binding: FragAnimalAreaDetailBinding
     private var isScrolling = false
     private var currentItems = 0
@@ -71,9 +71,9 @@ class AnimalAreaDetailFragment : Fragment() {
                     isScrolling = false
                     viewModel.isViewLoading.postValue(true)
                     viewModel.downloadPlantInfo(totalItems, GeneralConstants.ITEM_COUNT_PER_PAGE
-                            , animalAreaInfo, true)
-                    if (animalAreaInfo.image == null) {
-                        viewModel.downloadImage(animalAreaInfo)
+                            , viewModel.animalAreaInfo, true)
+                    if (viewModel.animalAreaInfo.image == null) {
+                        viewModel.downloadImage(viewModel.animalAreaInfo)
                     }
                 }
             }
@@ -92,7 +92,7 @@ class AnimalAreaDetailFragment : Fragment() {
                         isScrolling = false
                         viewModel.isViewLoading.postValue(true)
                         viewModel.downloadPlantInfo(totalItems, GeneralConstants.ITEM_COUNT_PER_PAGE
-                                , animalAreaInfo, true)
+                                , viewModel.animalAreaInfo, true)
                     }
                 }
             }
@@ -102,19 +102,19 @@ class AnimalAreaDetailFragment : Fragment() {
             fragmentManager!!.popBackStack()
         }
 
-        viewModel.downloadPlantInfo(0, GeneralConstants.ITEM_COUNT_PER_PAGE, animalAreaInfo, false)
+        viewModel.downloadPlantInfo(0, GeneralConstants.ITEM_COUNT_PER_PAGE, viewModel.animalAreaInfo, false)
 
         return binding.root
     }
 
     private fun initData() {
         if (arguments != null && arguments!!.containsKey(GeneralConstants.ANIMAL_AREA_INFO)) {
-            animalAreaInfo = arguments!!.getParcelable(GeneralConstants.ANIMAL_AREA_INFO)!!
+            viewModel.animalAreaInfo = arguments!!.getParcelable(GeneralConstants.ANIMAL_AREA_INFO)!!
 
-            binding.ivAnimalArea.setImageBitmap(animalAreaInfo.image)
-            binding.tvTitle.text = animalAreaInfo.e_Name
-            binding.tvSubtitle.text = animalAreaInfo.e_Category
-            binding.tvSupporting.text = animalAreaInfo.e_Info
+            binding.ivAnimalArea.setImageBitmap(viewModel.animalAreaInfo.image)
+            binding.tvTitle.text = viewModel.animalAreaInfo.e_Name
+            binding.tvSubtitle.text = viewModel.animalAreaInfo.e_Category
+            binding.tvSupporting.text = viewModel.animalAreaInfo.e_Info
         }
     }
 
@@ -129,11 +129,21 @@ class AnimalAreaDetailFragment : Fragment() {
         viewModel.clickedCardView.observe(this, clickedCardViewObserver)
         viewModel.downloadFailed.observe(this, downloadFailedObserver)
         viewModel.animalInfoImageCompleted.observe(this, animalInfoImageCompletedObserver)
+        viewModel.openInBrowser.observe(this, openInBrowserObserver)
+    }
+
+    fun openAnimalInfoInBrowser() {
+        viewModel.onClickOpenInBrowser()
+    }
+
+    private val openInBrowserObserver = Observer<String> {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+        startActivity(browserIntent)
     }
 
     private val animalInfoImageCompletedObserver = Observer<Boolean> {
         if (it) {
-            binding.ivAnimalArea.setImageBitmap(animalAreaInfo.image)
+            binding.ivAnimalArea.setImageBitmap(viewModel.animalAreaInfo.image)
         }
         viewModel.downloadFailed.postValue(false)
     }

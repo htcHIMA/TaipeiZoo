@@ -6,6 +6,7 @@ import android.view.View
 import android.view.WindowManager
 import com.taipeizoo.R
 import com.taipeizoo.databinding.ActivityMainBinding
+import com.taipeizoo.fragment.AnimalAreaDetailFragment
 import com.taipeizoo.fragment.MainPageFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -29,6 +30,13 @@ class MainPageActivity : BaseActivity() {
         } else {
             window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             progressBar.visibility = View.GONE
+        }
+    }
+
+    fun onClickOpenAnimalInfoInBrowser(view: View) {
+        val fragment = supportFragmentManager.findFragmentById(R.id.container)
+        if (fragment is AnimalAreaDetailFragment) {
+            ((fragment as AnimalAreaDetailFragment).openAnimalInfoInBrowser())
         }
     }
 }

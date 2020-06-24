@@ -17,6 +17,7 @@ import io.reactivex.schedulers.Schedulers
 import java.net.URL
 
 class AnimalAreaDetailViewModel(application: Application) : AndroidViewModel(application) {
+    lateinit var animalAreaInfo: AnimalAreaInfo
     val isViewLoading = MutableLiveData<Boolean>()
     val textCompleted = MutableLiveData<BasePlantResponse>()
     val pagingTextCompleted = MutableLiveData<BasePlantResponse>()
@@ -24,8 +25,7 @@ class AnimalAreaDetailViewModel(application: Application) : AndroidViewModel(app
     val animalInfoImageCompleted = MutableLiveData<Boolean>();
     val downloadFailed = MutableLiveData<Boolean>()
     val clickedCardView = MutableLiveData<PlantInfo>()
-
-
+    val openInBrowser = MutableLiveData<String>()
 
     fun downloadPlantInfo(start: Int, itemCountPerPage: Int, animalAreaInfo: AnimalAreaInfo
                           , isPagingDownload: Boolean) {
@@ -112,5 +112,12 @@ class AnimalAreaDetailViewModel(application: Application) : AndroidViewModel(app
 
     fun onClickCardView(plantInfo: PlantInfo) {
         clickedCardView.postValue(plantInfo)
+    }
+
+
+    open fun onClickOpenInBrowser() {
+        if (!animalAreaInfo.e_URL.isNullOrEmpty()) {
+            openInBrowser.postValue(animalAreaInfo.e_URL)
+        }
     }
 }

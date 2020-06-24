@@ -13,13 +13,11 @@ import com.taipeizoo.activity.MainPageActivity
 import com.taipeizoo.constnats.GeneralConstants
 import com.taipeizoo.databinding.FragPlantDetailBinding
 import com.taipeizoo.remote.dto.response.BasePlantResponse
-import com.taipeizoo.remote.dto.response.PlantInfo
 import com.taipeizoo.viewmodel.PlantDetailViewModel
 
 class PlantDetailFragment : Fragment() {
     private lateinit var viewModel: PlantDetailViewModel
     private lateinit var binding: FragPlantDetailBinding
-    private lateinit var plantInfo: PlantInfo
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(
@@ -32,7 +30,7 @@ class PlantDetailFragment : Fragment() {
 
         setupViewModel(binding)
         initData()
-        viewModel.downloadPlantInfo(plantInfo.F_Name_Ch!!)
+        viewModel.downloadPlantInfo(viewModel.plantInfo.F_Name_Ch!!)
 
         binding.appBar.setNavigationOnClickListener {
             fragmentManager!!.popBackStack()
@@ -43,7 +41,7 @@ class PlantDetailFragment : Fragment() {
 
     private fun initData() {
         if (arguments != null && arguments!!.containsKey(GeneralConstants.PLANT_INFO)) {
-            plantInfo = arguments!!.getParcelable(GeneralConstants.PLANT_INFO)!!
+            viewModel.plantInfo = arguments!!.getParcelable(GeneralConstants.PLANT_INFO)!!
         }
     }
 
@@ -59,7 +57,7 @@ class PlantDetailFragment : Fragment() {
 
     private val imageCompletedObserver = Observer<Boolean> {
         if (it) {
-            binding.ivPlantImage.setImageBitmap(plantInfo.image)
+            binding.ivPlantImage.setImageBitmap(viewModel.plantInfo.image)
         }
         viewModel.imageCompleted.postValue(false)
         viewModel.isViewLoading.postValue(false)
@@ -67,9 +65,9 @@ class PlantDetailFragment : Fragment() {
 
     private val textCompletedObserver = Observer<BasePlantResponse> {
         if (it?.plantResponseDetail != null && it.plantResponseDetail.plantInfoList.isNotEmpty()) {
-            plantInfo = it.plantResponseDetail.plantInfoList[0]
-            viewModel.downloadImage(plantInfo)
-            viewModel.initPlantInfoText(plantInfo)
+            viewModel.plantInfo = it.plantResponseDetail.plantInfoList[0]
+            viewModel.downloadImage(viewModel.plantInfo)
+            viewModel.initPlantInfoText(viewModel.plantInfo)
         }
         viewModel.textCompleted.postValue(null)
         viewModel.isViewLoading.postValue(false)

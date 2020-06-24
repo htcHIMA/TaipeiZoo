@@ -13,4 +13,5 @@
     <string name="label_brief">簡介</string>
     <string name="label_functionAndApplication">功能性</string>
     <string name="label_lastUpdate">最後更新</string>
+    <string name="err_no_url">無網址可開啟</string>
 </resources>

@@ -17,6 +17,7 @@ import io.reactivex.schedulers.Schedulers
 import java.net.URL
 
 class PlantDetailViewModel(application: Application) : AndroidViewModel(application) {
+    lateinit var plantInfo: PlantInfo
     val isViewLoading = MutableLiveData<Boolean>()
     val textCompleted = MutableLiveData<BasePlantResponse>()
     val imageCompleted = MutableLiveData<Boolean>()
