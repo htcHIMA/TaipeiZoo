@@ -1,0 +1,12 @@
+0000000000000000000000000000000000000000 72341759608db73b45d61c64211c800c24677fca Anderson Chen <j2206811262@gmail.com> 1592393013 +0800	commit (initial): Initial commit
+72341759608db73b45d61c64211c800c24677fca 8fe8b0e93950ac6fecab3c826a7ae7014d3d6245 Anderson Chen <j2206811262@gmail.com> 1592452874 +0800	commit: basic main page ui and zoo data downloaded
+8fe8b0e93950ac6fecab3c826a7ae7014d3d6245 8fe8b0e93950ac6fecab3c826a7ae7014d3d6245 Anderson Chen <j2206811262@gmail.com> 1592460705 +0800	reset: moving to HEAD
+8fe8b0e93950ac6fecab3c826a7ae7014d3d6245 6118b23b51c56b7808d6227c15eef636c9add2b3 Anderson Chen <j2206811262@gmail.com> 1592468062 +0800	commit: paging
+6118b23b51c56b7808d6227c15eef636c9add2b3 537f2d8d463fa02da120d872576eaa4a3ad53db7 Anderson Chen <j2206811262@gmail.com> 1592476990 +0800	commit: convert to kotlin project
+537f2d8d463fa02da120d872576eaa4a3ad53db7 7220cc38389a2ac528f4a19ccc53afbfe4f809c8 Anderson Chen <j2206811262@gmail.com> 1592557541 +0800	commit: image display
+7220cc38389a2ac528f4a19ccc53afbfe4f809c8 3f899fbe81210c26f0d7fa54b3bf0b7d2aea815f Anderson Chen <j2206811262@gmail.com> 1592632322 +0800	commit: plant display
+3f899fbe81210c26f0d7fa54b3bf0b7d2aea815f 4f37584d81527d1bd9d83bd6049fefcd7c304e62 Anderson Chen <j2206811262@gmail.com> 1592634477 +0800	commit: prevent duplicate download image task executing
+4f37584d81527d1bd9d83bd6049fefcd7c304e62 8314c96e12cd8530bf81cf9dc706ac47f6ca9609 Anderson Chen <j2206811262@gmail.com> 1592644781 +0800	commit: base plant image and page
+8314c96e12cd8530bf81cf9dc706ac47f6ca9609 5b0b9cdfa0628ba3ccac98e65f2606cea76ca256 Anderson Chen <j2206811262@gmail.com> 1592645829 +0800	commit: popBack
+5b0b9cdfa0628ba3ccac98e65f2606cea76ca256 1b940be36379720dac2a2cdd9fc40cb9f530ae8e Anderson Chen <j2206811262@gmail.com> 1592889033 +0800	commit: view loading
+1b940be36379720dac2a2cdd9fc40cb9f530ae8e dc25df893df7c113b0aa24fa2dc312f27a734e6e Anderson Chen <j2206811262@gmail.com> 1592890546 +0800	commit: adjust ui

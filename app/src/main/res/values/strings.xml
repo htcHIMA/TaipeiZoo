@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TaipeiZoo</string>
+    <string name="label_see_more">查看</string>
+    <string name="label_supporting_text">註釋文字</string>
+    <string name="label_subtitle_text">副標題</string>
+    <string name="label_title">標題</string>
+    <string name="label_homepage_title">台北市立動物園</string>
+    <string name="label_open_in_web">在網頁中開啟</string>
+    <string name="label_chinese_name">中文名稱</string>
+    <string name="label_latin_name">拉丁語名稱</string>
+    <string name="label_also_known">別名</string>
+    <string name="label_feature">辨認方式</string>
+    <string name="label_brief">簡介</string>
+    <string name="label_functionAndApplication">功能性</string>
+    <string name="label_lastUpdate">最後更新</string>
+</resources>
